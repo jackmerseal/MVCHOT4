@@ -1,0 +1,27 @@
+﻿@model MVCHOT4.Models.Customer
+@{
+	ViewBag.Title = "Add Customer";
+}
+
+@section scripts{
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<h1>@ViewBag.Title</h1>
+<div asp-validation-summary="All"></div>
+<form asp-controller="Customer" asp-action="Add" method="post">
+    <div class="row">
+        <div class="col">
+            <input asp-for=Username class="form-control" placeholder="Username">
+            <label asp-for=Username>Username</label>
+        </div>
+        <div class="col">
+            <input asp-for=PhoneNumber class="form-control" placeholder="Phone Number">
+            <label asp-for=PhoneNumber>Phone Number</label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+
+</form> 

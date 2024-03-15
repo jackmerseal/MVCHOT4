@@ -3,10 +3,16 @@
     string c = ViewContext.RouteData.Values["controller"].ToString() ?? "";
     string a = ViewContext.RouteData.Values["action"].ToString() ?? "";
 }
+
+@section scripts{
+	<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
 <header>
 	<nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-info" data-bs-theme="dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyShop</a>
+			<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">AppointmentScheduler</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
 					aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -17,7 +23,10 @@
 						<a class="nav-link @(c=="Home" && a=="Index" ? "active text-light" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link @(c=="Customer" && a=="Add" ? "active text-light" : "")" asp-area="" asp-controller="Customer" asp-action="Add">Customers</a>
+						<a class="nav-link @(c=="Customer" && a=="Customers" ? "active text-light" : "")" asp-area="" asp-controller="Customer" asp-action="Customers">Customers</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link @(c=="Appointment" && a=="Add" ? "active text-light" : "")" asp-area="" asp-controller="Appointment" asp-action="Add">Appointments</a>
 					</li>
 				</ul>
 				<div class="d-flex">
@@ -30,22 +39,10 @@
 			</div>
 		</div>
 	</nav>
-</header>
+	</header>
+
 <div class="container">
 	<main role="main" class="pb-3">
 		@RenderBody()
 	</main>
 </div>
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-    <div>
-        @RenderBody()
-    </div>
-</body>
-</html>

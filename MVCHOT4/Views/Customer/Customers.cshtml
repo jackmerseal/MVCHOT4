@@ -1,0 +1,32 @@
+﻿@model List<MVCHOT4.Models.Customer>
+@{
+    ViewBag.Title = "Customer List";
+}
+
+<h1>Customer List</h1>
+    <div class="col-md-10">
+        <table class="table table-info table-striped">
+            <tr>
+                <th>
+                    Username
+                </th>
+                <th>
+                    Phone Number
+                </th>
+            </tr>
+
+            @foreach (var customer in Model)
+            {
+                    <tr>
+                        <td>
+                        @Html.DisplayFor(modelItem => customer.Username)
+                        </td>
+                        <td>
+                        @Html.DisplayFor(modelItem => customer.PhoneNumber)
+                        </td>
+                    </tr>
+            }
+        </table>
+        <a asp-controller="Customer" asp-action="Add" class="btn btn-primary">Add Customer</a>
+    </div>
+</div> 

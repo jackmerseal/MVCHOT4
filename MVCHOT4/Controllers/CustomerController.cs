@@ -49,7 +49,7 @@ namespace MVCHOT4.Controllers
 					return View("Add", customer);
 				}
 			}
-			return View("Add");
+			return View("Add", new Customer());
 		}
 
 		[HttpPost]

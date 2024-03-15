@@ -11,14 +11,14 @@
 <h1>@ViewBag.Title</h1>
 <div asp-validation-summary="All"></div>
 <form asp-controller="Customer" asp-action="Add" method="post">
-    <div class="row">
-        <div class="col">
-            <input asp-for=Username class="form-control" placeholder="Username">
-            <label asp-for=Username>Username</label>
+    <div class="row mb-3">
+        <div class="col mb-3">
+            <label asp-for=Username class="form-label">Username</label>
+            <input asp-for=Username class="form-control">
         </div>
-        <div class="col">
-            <input asp-for=PhoneNumber class="form-control" placeholder="Phone Number">
-            <label asp-for=PhoneNumber>Phone Number</label>
+        <div class="col mb-3">
+            <label asp-for=PhoneNumber class="form-label">Phone Number</label>
+            <input asp-for=PhoneNumber class="form-control">
         </div>
     </div>
 

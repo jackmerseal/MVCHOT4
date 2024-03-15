@@ -16,24 +16,32 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\coast\OneDrive\Desktop\Jack Coding\MVCHOT4\MVCHOT4
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Admin/Shared/_AdminLayout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QWRtaW5cU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+[C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Areas/Admin/Views/Appointment/Appointments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRcQXBwb2ludG1lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Admin/Views/Appointment/Appointments.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QWRtaW5cVmlld3NcQXBwb2ludG1lbnRcQXBwb2ludG1lbnRzLmNzaHRtbA==
+[C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Areas/Admin/Views/Appointment/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Admin/Views/Appointment/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QWRtaW5cVmlld3NcQXBwb2ludG1lbnRcRGVsZXRlLmNzaHRtbA==
+[C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Areas/Admin/Views/Appointment/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Admin/Views/Appointment/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QWRtaW5cVmlld3NcQXBwb2ludG1lbnRcRWRpdC5jc2h0bWw=
+[C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Admin/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Areas/Admin/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Areas/Admin/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Areas/Admin/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/coast/OneDrive/Desktop/Jack Coding/MVCHOT4/MVCHOT4/Views/Home/Index.cshtml]

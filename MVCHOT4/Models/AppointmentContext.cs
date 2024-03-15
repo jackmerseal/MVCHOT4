@@ -17,17 +17,15 @@ namespace MVCHOT4.Models
                     CustomerId = 1,
                     Username = "Matt Turk",
                     PhoneNumber = "123-456-7890"
-                }
-                );
+                });
+
             modelBuilder.Entity<Appointment>().HasData(
                 new Appointment
                 {
                     Id = 1,
-                    StartTime = new DateTime(2024, 03, 15).Hour,
+                    StartTime = new DateTime(2024, 03, 15, 08, 00, 00),
                     CustomerId = 1
-
                 });
         }
-
     }
 }

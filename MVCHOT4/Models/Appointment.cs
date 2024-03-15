@@ -11,6 +11,6 @@ namespace MVCHOT4.Models
         [Required(ErrorMessage = "Customer is required")]
         public int CustomerId { get; set; }
         [ValidateNever]
-        public Customer Customer { get; set; }
+        public Customer Customer { get; set; } = null!;
     }
 }

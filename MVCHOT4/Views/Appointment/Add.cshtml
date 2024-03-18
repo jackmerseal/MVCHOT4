@@ -24,6 +24,7 @@
 			</select>
 			<span asp-validation-for="Appointment.CustomerId" class="text-danger"></span>
 		</div>
+		<input type="hidden" asp-for="Appointment.Id" />
 		<div class="m-3">
 			<button type="submit" class="btn btn-primary">Add</button>
 			<a asp-controller="Home" asp-action="Cancel" class="btn btn-primary">Cancel</a>

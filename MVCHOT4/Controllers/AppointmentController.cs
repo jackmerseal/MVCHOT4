@@ -1,12 +1,46 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using MVCHOT4.Models;
 
 namespace MVCHOT4.Controllers
 {
 	public class AppointmentController : Controller
 	{
-		public IActionResult Index()
-		{
-			return View();
-		}
-	}
+		private readonly AppointmentContext _context;
+        public AppointmentController(AppointmentContext context)
+        {
+            _context = context;
+        }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Appointments()
+        {
+            IQueryable<Appointment> query = _context.Appointments.Include(a => a.Customer);
+            var model = new AppointmentViewModel
+            {
+                Appointments = query.ToList()
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Appointments(AppointmentViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Appointments.Add(vm.Appointment);
+                _context.SaveChanges();
+                return RedirectToAction("Appointments");
+            }
+            else
+            {
+                return View(vm.Appointment);
+            }
+        }
+    }
 }

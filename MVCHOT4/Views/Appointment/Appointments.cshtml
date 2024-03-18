@@ -1,0 +1,34 @@
+﻿@model MVCHOT4.Models.AppointmentViewModel
+@{
+    ViewBag.Title = "Appointment List";
+}
+
+<h1>Appointment List</h1>
+<div class="col-md-10">
+    <table class="table table-info table-striped">
+        <tr>
+            <th>
+                Start TIme
+            </th>
+            <th>
+                Customer
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Appointments)
+        {
+            <tr>
+                <td>
+                    @item.StartTime
+                </td>
+                <td>
+                    @item.Customer.Username
+                </td>
+            </tr>
+            <input type="hidden" asp-for="@item.Id" />
+        }
+    </table>
+</div>

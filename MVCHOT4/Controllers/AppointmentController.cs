@@ -47,7 +47,7 @@ namespace MVCHOT4.Controllers
         public IActionResult Add()
         {
             var vm = new AppointmentViewModel();
-            ViewBag.Customers = vm.Customers;
+            vm.Customers = _context.Customers.ToList();
             return View(vm);
         }
 

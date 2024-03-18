@@ -6,10 +6,17 @@ namespace MVCHOT4.Controllers
 {
     public class HomeController : Controller
     {
+        public AppointmentContext Context { get; set; }
+
+        public HomeController(AppointmentContext context)
+        {
+            Context = context;
+        }
 
         public IActionResult Index()
         {
-            return View();
+            var appointments = Context.Appointments.OrderBy(a => a.StartTime).ToList();
+            return View(appointments);
         }
 
         public IActionResult Privacy()

@@ -63,7 +63,7 @@ namespace MVCHOT4.Controllers
 				}
 
 				_context.SaveChanges();
-				return RedirectToAction("Index");
+				return RedirectToAction("Customers");
 			}
 
 			return View("Add", customer);

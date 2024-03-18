@@ -15,13 +15,13 @@
         <div class="col mb-3">
             <label asp-for=Username class="form-label">Username</label>
             <input asp-for=Username class="form-control">
+            <span asp-validation-for="Username" class="text-danger"></span>
         </div>
         <div class="col mb-3">
             <label asp-for=PhoneNumber class="form-label">Phone Number</label>
             <input asp-for=PhoneNumber class="form-control">
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
         </div>
     </div>
-
     <button type="submit" class="btn btn-primary">Add</button>
-
 </form> 

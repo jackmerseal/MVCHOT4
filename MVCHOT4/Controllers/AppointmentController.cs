@@ -12,6 +12,7 @@ namespace MVCHOT4.Controllers
             _context = context;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -41,6 +42,29 @@ namespace MVCHOT4.Controllers
             {
                 return View(vm.Appointment);
             }
+        }
+        [HttpGet]
+        public IActionResult Add()
+        {
+			ViewBag.Action = "Add Appointment";
+			ViewBag.Appointments = _context.Appointments.OrderBy(a => a.StartTime).ToList();
+			return View("Add", new Appointment());
+		}
+
+        [HttpPost]
+        public IActionResult Add(Appointment appointment)
+        {
+            if (ModelState.IsValid)
+            {
+                if (appointment.Id == 0)
+                {
+                    _context.Appointments.Add(appointment);
+                }
+                _context.SaveChanges();
+                return RedirectToAction("Appointments");
+            }
+
+            return View("Add", appointment);
         }
     }
 }

@@ -44,19 +44,20 @@ namespace MVCHOT4.Controllers
             }
         }
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult Add(AppointmentViewModel vm)
         {
-			ViewBag.Action = "Add Appointment";
-			ViewBag.Appointments = _context.Appointments.OrderBy(a => a.StartTime).ToList();
-			return View("Add", new Appointment());
-		}
+            if (ModelState.IsValid)
+            {
+
+            }
+        }
 
         [HttpPost]
         public IActionResult Add(AppointmentViewModel vm)
         {
             if (ModelState.IsValid)
             {
-				if (vm.CustomerId == 0)
+				if (vm.Id == 0)
 				{
 					_context.Appointments.Add(vm);
 				}

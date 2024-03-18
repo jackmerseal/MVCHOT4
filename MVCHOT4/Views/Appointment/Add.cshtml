@@ -1,4 +1,4 @@
-﻿@model AppointmentViewModel
+﻿@model MVCHOT4.Models.AppointmentViewModel
 @{
     ViewBag.Title = "Add Appointment";
 }
@@ -7,22 +7,22 @@
 	<div class="ms-3 mt-2">
 		<h1>Add Appointment</h1>
 	</div>
-	<form asp-action="Add" method="post">
+	<form asp-controller="Appointment" asp-action="Add" method="post">
 		<div class="m-3">
-			<label asp-for="StartTime">Start Time</label>
-			<input asp-for="StartTime" class="form-control" />
-			<span asp-validation-for="StartTime" class="text-danger"></span>
+			<label asp-for="Appointment.StartTime">Start Time</label>
+			<input asp-for="Appointment.StartTime" class="form-control" />
+			<span asp-validation-for="Appointment.StartTime" class="text-danger"></span>
 		</div>
 		<div class="m-3">
-			<label asp-for="CustomerId" class="form-label">Customer</label>
-			@if (Model.Customers != null && Model.Customers.Any())
-			{
-				   <select asp-for="@Model.Customer.CustomerId"asp-items="@(new SelectList(Model.Customers, "CustomerId", "Username"))" class="form-select">
-						<option value="0">-- Select Customer --</option>
-					</select>
-			}
-			<input type="hidden" asp-for="CustomerId" />
-			<span asp-validation-for="CustomerId" class="text-danger"></span>
+			<label asp-for="Appointment.CustomerId" class="form-label">Customer</label>
+			<select asp-for="Appointment.CustomerId" class="form-select">
+				<option value="0">-- Select Customer</option>
+				@foreach (var customer in Model.Customers)
+				{
+					<option value="@customer.CustomerId">@customer.Username</option>
+				}
+			</select>
+			<span asp-validation-for="Appointment.CustomerId" class="text-danger"></span>
 		</div>
 		<div class="m-3">
 			<button type="submit" class="btn btn-success">Add</button>

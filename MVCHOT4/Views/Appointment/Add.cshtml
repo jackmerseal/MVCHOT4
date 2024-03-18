@@ -1,11 +1,6 @@
-﻿@model Appointment
+﻿@model AppointmentViewModel
 @{
     ViewBag.Title = "Add Appointment";
-}
-
-@section scripts{
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }
 
 <div class="container">
@@ -19,10 +14,13 @@
 			<span asp-validation-for="StartTime" class="text-danger"></span>
 		</div>
 		<div class="m-3">
-			<label asp-for="CustomerId" class="form-label">Employee</label>
-			<select asp-for="CustomerId" asp-items="@(new SelectList(ViewBag.Customers, "CustomerId", "Username"))" class="form-select">
-				<option value="" selected>-- Select Employee --</option>
-			</select>
+			<label asp-for="CustomerId" class="form-label">Customer</label>
+			@if (Model.Customers != null && Model.Customers.Any())
+			{
+				   <select asp-for="@Model.Customer.CustomerId"asp-items="@(new SelectList(Model.Customers, "CustomerId", "Username"))" class="form-select">
+						<option value="0">-- Select Customer --</option>
+					</select>
+			}
 			<input type="hidden" asp-for="CustomerId" />
 			<span asp-validation-for="CustomerId" class="text-danger"></span>
 		</div>

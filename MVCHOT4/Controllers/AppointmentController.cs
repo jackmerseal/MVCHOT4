@@ -44,12 +44,10 @@ namespace MVCHOT4.Controllers
             }
         }
         [HttpGet]
-        public IActionResult Add(AppointmentViewModel vm)
+        public IActionResult Add()
         {
-            if (ModelState.IsValid)
-            {
-
-            }
+            var vm = new AppointmentViewModel();
+            return View(vm);
         }
 
         [HttpPost]
@@ -59,13 +57,12 @@ namespace MVCHOT4.Controllers
             {
 				if (vm.Id == 0)
 				{
-					_context.Appointments.Add(vm);
+					_context.Appointments.Add(vm.Appointment);
 				}
-
 				_context.SaveChanges();
 				return RedirectToAction("Appointments");
 			}
-            return View("Add", vm);
+            return View(vm);
         }
     }
 }

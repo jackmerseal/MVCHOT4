@@ -1,14 +1,14 @@
-﻿@model AppointmentViewModel
+﻿@model MVCHOT4.Models.AppointmentViewModel
 @{
 	ViewBag.Title = "Delete Appointment";
 }
 <div class="container">
 	<div class="ms-2 mt-2">
-		<h1>@ViewBag.Title</h1>
+		<h1>Delete Appointment</h1>
 	</div>
 	<p class="ms-3">Do you really want to delete this appointment?</p>
-	<form asp-action="Delete" method="post">
-		<input type="hidden" asp-for="Id" />
+	<form asp-area="Admin" asp-controller="Appointment" asp-action="Delete" method="post">
+		<input type="hidden" asp-for="Appointment.Id" />
 		<button type="submit" class="btn btn-primary ms-3">Yes</button>
 		<a asp-controller="Appointment" asp-action="Appointments" class="btn btn-primary">No</a>
 	</form>

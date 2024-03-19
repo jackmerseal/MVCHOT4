@@ -67,17 +67,16 @@ namespace MVCHOT4.Areas.Admin.Controllers
 		[HttpPost]
 		public IActionResult Edit(AppointmentViewModel vm)
 		{
-			if (ModelState.IsValid)
+			if (vm.Appointment.Id != 0)
 			{
-				if (vm.Id != 0)
-				{
-					_context.Appointments.Update(vm.Appointment);
-				}
+				_context.Appointments.Update(vm.Appointment);
 				_context.SaveChanges();
 				return RedirectToAction("Appointments");
 			}
-			vm.Customers = _context.Customers.ToList();
-			return View("Edit", vm);
+			else
+			{
+				return RedirectToAction("Edit", new { id = vm.Appointment.Id });
+			}
 		}
 
 		[HttpGet]

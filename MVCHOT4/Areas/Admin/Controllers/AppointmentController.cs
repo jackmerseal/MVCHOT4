@@ -76,7 +76,6 @@ namespace MVCHOT4.Areas.Admin.Controllers
 				_context.SaveChanges();
 				return RedirectToAction("Appointments");
 			}
-
 			vm.Customers = _context.Customers.ToList();
 			return View("Edit", vm);
 		}

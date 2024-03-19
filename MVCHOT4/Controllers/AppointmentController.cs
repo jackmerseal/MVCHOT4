@@ -57,7 +57,7 @@ namespace MVCHOT4.Controllers
         {
             if (ModelState.IsValid)
             {
-				if (vm.Appointment.Id == 0)
+				if (vm.Appointment.Id != 0)
 				{
 					_context.Appointments.Add(vm.Appointment);
 				}

@@ -32,7 +32,7 @@ namespace MVCHOT4.Areas.Admin.Controllers
 		[HttpPost]
 		public IActionResult Appointments(AppointmentViewModel vm)
 		{
-			if (ModelState.IsValid)
+			if (vm.Id != 0)
 			{
 				_context.Appointments.Add(vm.Appointment);
 				_context.SaveChanges();

@@ -65,8 +65,21 @@ namespace MVCHOT4.Controllers
 				_context.SaveChanges();
 				return RedirectToAction("Customers");
 			}
-
 			return View("Add", customer);
 		}
-	}
+
+        [HttpGet]
+        public IActionResult Cancel(int id)
+        {
+            if (id == 0)
+            {
+                return RedirectToAction("Customers");
+            }
+            else
+            {
+                return RedirectToAction("Index", new { id });
+            }
+        }
+
+    }
 }

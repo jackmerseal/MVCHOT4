@@ -48,7 +48,7 @@ namespace MVCHOT4.Controllers
         {
             var vm = new AppointmentViewModel();
             vm.Customers = _context.Customers.ToList();
-            return View("Add", vm);
+            return View(vm);
         }
 
         [HttpPost]
@@ -70,5 +70,18 @@ namespace MVCHOT4.Controllers
                 return View("Add", vm);
             }
         }
-    }
+
+		[HttpGet]
+		public IActionResult Cancel(int id)
+		{
+			if (id == 0)
+			{
+				return RedirectToAction("Appointments");
+			}
+			else
+			{
+				return RedirectToAction("Index", new { id });
+			}
+		}
+	}
 }

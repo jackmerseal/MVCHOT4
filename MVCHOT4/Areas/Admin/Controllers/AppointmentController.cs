@@ -83,11 +83,16 @@ namespace MVCHOT4.Areas.Admin.Controllers
 		public IActionResult Delete(int id)
 		{
 			var appointment = _context.Appointments.Find(id);
-			if (appointment != null)
+			if (appointment == null)
 			{
-				return View(appointment);
+				return RedirectToAction("Appointments");
 			}
-			return RedirectToAction("Appointments");
+
+			var vm = new AppointmentViewModel
+			{ 
+				Appointment = appointment 
+			};
+			return View(vm);
 		}
 
 		[HttpPost]

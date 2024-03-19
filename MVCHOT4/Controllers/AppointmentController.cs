@@ -40,7 +40,8 @@ namespace MVCHOT4.Controllers
             }
             else
             {
-                return View(vm.Appointment);
+                vm.Customers = _context.Customers.ToList();
+                return View(vm);
             }
         }
         [HttpGet]
@@ -56,13 +57,14 @@ namespace MVCHOT4.Controllers
         {
             if (ModelState.IsValid)
             {
-				if (vm.Id == 0)
+				if (vm.Appointment.Id == 0)
 				{
 					_context.Appointments.Add(vm.Appointment);
 				}
 				_context.SaveChanges();
 				return RedirectToAction("Appointments");
 			}
+            vm.Customers = _context.Customers.ToList();
             return View(vm);
         }
 

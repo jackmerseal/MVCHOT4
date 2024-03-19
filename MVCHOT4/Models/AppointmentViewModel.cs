@@ -1,6 +1,9 @@
-﻿namespace MVCHOT4.Models
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+namespace MVCHOT4.Models
 {
-    public class AppointmentViewModel : Appointment
+    public class AppointmentViewModel
     {
         public IEnumerable<Appointment> Appointments { get; set; }
         public IEnumerable<Customer> Customers { get; set; }

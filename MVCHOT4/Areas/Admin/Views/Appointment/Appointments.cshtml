@@ -1,1 +1,35 @@
-﻿@model List<MVCHOT4.Models.Appointment>
+﻿@model MVCHOT4.Models.AppointmentViewModel
+
+<h1>Appointment List</h1>
+<div class="col-md-10">
+    <table class="table table-info table-striped">
+        <tr>
+            <th>
+                Start Time
+            </th>
+            <th>
+                Customer
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Appointments)
+        {
+            <tr>
+                <td>
+                    @item.StartTime
+                </td>
+                <td>
+                    @item.Customer.Username
+                </td>
+                <td>
+                    <a asp-controller="Appointment" asp-action="Edit" asp-route-id=@item.Id class="btn btn-primary">Edit Appointment</a>
+                </td>
+                    <td>
+                    <a asp-controller="Appointment" asp-action="Delete" asp-route-id=@item.Id class="btn btn-primary">Delete Appointment</a>
+                </td>
+            </tr>
+            <input type="hidden" asp-for="@item.Id" />
+        }
+    </table>
+    <a asp-controller="Appointment" asp-action="Add" class="btn btn-primary">Add Appointment</a>
+</div>

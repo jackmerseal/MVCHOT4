@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace MVCHOT4.Models
 {
-    public class Appointment
+    public class Appointment : IValidatableObject
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Start date is required")]
@@ -14,6 +17,26 @@ namespace MVCHOT4.Models
         public int CustomerId { get; set; }
         [ValidateNever]
         public Customer? Customer { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var appointmentContext = (AppointmentContext)validationContext.GetService(typeof(AppointmentContext));
+            var appointments = appointmentContext.Appointments.Where(a => a.StartTime ==  StartTime).ToList();
+
+            if(appointments.Any())
+            {
+                var isTimeSlotAvailableAttribute = validationContext.ObjectType
+                    .GetCustomAttributes(typeof(IsTimeSlotAvailableAttribute), true)
+                    .FirstOrDefault() as IsTimeSlotAvailableAttribute;
+
+                if(isTimeSlotAvailableAttribute != null)
+                {
+                    yield return new ValidationResult(isTimeSlotAvailableAttribute.ErrorMessage);
+                }
+                
+            }
+
+        }
     }
 
     public class FutureDateAttribute : ValidationAttribute
@@ -33,22 +56,7 @@ namespace MVCHOT4.Models
     { 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            DateTime dateTime = (DateTime)value;
-            Appointment appointment = (Appointment)validationContext.ObjectInstance;
-
-            List<Appointment> appointments = GetAppointmentsFromDatabase(appointmentContext)
-
-            if(appointments.Any(a => a.StartTime == dateTime))
-            {
-                return new ValidationResult(ErrorMessage);
-            }
             return ValidationResult.Success;
-        }
-
-        private List<Appointment> GetAppointmentsFromDatabase(AppointmentContext appointmentContext)
-        {
-            return AppointmentContext.Appointments.Where(a => a.StartTime == DateTime.Now).ToList();
-            return new List<Appointment>();
         }
     }
 

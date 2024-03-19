@@ -46,38 +46,34 @@ namespace MVCHOT4.Areas.Admin.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Edit(int? id)
+		public IActionResult Edit(int? id, AppointmentViewModel vm)
 		{
+			vm.Customers = _context.Customers.ToList();
 			if (id.HasValue)
 			{
 				var appointment = _context.Appointments.Find(id.Value);
 				if (appointment != null)
 				{
-					return View("Edit", appointment);
+					return View("Edit", vm.Appointment);
 				}
 			}
 			return View("Edit", new Appointment());
 		}
 
 		[HttpPost]
-		public IActionResult Add(Appointment appointment)
+		public IActionResult Edit(AppointmentViewModel vm)
 		{
 			if (ModelState.IsValid)
 			{
-				if (appointment.Id == 0)
+				if (vm.Id != 0)
 				{
-					_context.Appointments.Add(appointment);
+					_context.Appointments.Update(vm.Appointment);
 				}
-				else
-				{
-					_context.Appointments.Update(appointment);
-				}
-
 				_context.SaveChanges();
 				return RedirectToAction("Appointments");
 			}
 
-			return View("Edit", appointment);
+			return View("Edit", vm.Appointment);
 		}
 
 		[HttpGet]

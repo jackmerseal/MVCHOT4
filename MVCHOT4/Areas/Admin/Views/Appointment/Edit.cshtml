@@ -1,5 +1,31 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model MVCHOT4.Models.AppointmentViewModel
 @{
+	ViewBag.Title = $"{ViewBag.Action}";
 }
+
+<div class="container">
+	<form asp-controller="Appointment" asp-action="Edit" method="post">
+		<div class="m-3">
+			<label class="m-1" asp-for="Appointment.StartTime">Start Time</label>
+			<input asp-for="Appointment.StartTime" class="form-control" />
+			<span asp-validation-for="Appointment.StartTime" class="text-danger"></span>
+		</div>
+		<div class="m-3">
+			<label asp-for="Appointment.CustomerId" class="form-label">Customer</label>
+			<select asp-for="Appointment.CustomerId" class="form-select">
+				<option value="0">-- Select Customer</option>
+				@foreach (var customer in Model.Customers)
+				{
+					<option value="@customer.CustomerId">@customer.Username</option>
+				}
+			</select>
+			<span asp-validation-for="Appointment.CustomerId" class="text-danger"></span>
+		</div>
+		<input type="hidden" asp-for="Appointment.Id" />
+		<div class="m-3">
+			<button type="submit" class="btn btn-success">Save</button>
+			<a asp-controller="Appointment" asp-action="Cancel" class="btn btn-warning text-white">Cancel</a>
+		</div>
+	</form>
+	</div>
+<script src="~/js/site.js" asp-append-version="true"></script>

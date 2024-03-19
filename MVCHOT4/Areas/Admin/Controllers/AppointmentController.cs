@@ -46,18 +46,22 @@ namespace MVCHOT4.Areas.Admin.Controllers
 		}
 
 		[HttpGet]
-		public IActionResult Edit(int? id, AppointmentViewModel vm)
+		public IActionResult Edit(int? id)
 		{
-			vm.Customers = _context.Customers.ToList();
 			if (id.HasValue)
 			{
 				var appointment = _context.Appointments.Find(id.Value);
 				if (appointment != null)
 				{
-					return View("Edit", vm.Appointment);
+					var vm = new AppointmentViewModel
+					{
+						Appointment = appointment,
+						Customers = _context.Customers.ToList()
+					};
+					return View("Edit", vm);
 				}
 			}
-			return View("Edit", new Appointment());
+			return View("Edit", new AppointmentViewModel());
 		}
 
 		[HttpPost]
@@ -73,7 +77,8 @@ namespace MVCHOT4.Areas.Admin.Controllers
 				return RedirectToAction("Appointments");
 			}
 
-			return View("Edit", vm.Appointment);
+			vm.Customers = _context.Customers.ToList();
+			return View("Edit", vm);
 		}
 
 		[HttpGet]
@@ -97,6 +102,19 @@ namespace MVCHOT4.Areas.Admin.Controllers
 				_context.SaveChanges();
 			}
 			return RedirectToAction("Appointments");
+		}
+
+		[HttpGet]
+		public IActionResult Cancel(int id)
+		{
+			if (id == 0)
+			{
+				return RedirectToAction("Appointments");
+			}
+			else
+			{
+				return RedirectToAction("Index", new { id });
+			}
 		}
 	}
 }

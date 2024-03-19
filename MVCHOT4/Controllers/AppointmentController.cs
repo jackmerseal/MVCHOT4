@@ -58,17 +58,12 @@ namespace MVCHOT4.Controllers
             {
 				if (vm.Id == 0)
 				{
-					_context.Add(vm.Appointment);
+					_context.Appointments.Add(vm.Appointment);
 				}
 				_context.SaveChanges();
 				return RedirectToAction("Appointments");
 			}
-            else
-            {
-                ViewBag.Action = "Add Appointment";
-                vm.Appointments = _context.Appointments.ToList();
-                return View("Add", vm);
-            }
+            return View(vm);
         }
 
 		[HttpGet]

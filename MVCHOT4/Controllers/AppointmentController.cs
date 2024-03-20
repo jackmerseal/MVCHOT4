@@ -40,7 +40,6 @@ namespace MVCHOT4.Controllers
             }
             else
             {
-                vm.Customers = _context.Customers.ToList();
                 return View(vm);
             }
         }
@@ -55,15 +54,24 @@ namespace MVCHOT4.Controllers
         [HttpPost]
         public IActionResult Add([FutureDate, IsTimeSlotAvailable] AppointmentViewModel vm)
         {
-            if (vm.Appointment.Id != null)
+            if(ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                if (vm.Appointment.Id != null)
                 {
                     _context.Appointments.Add(vm.Appointment);
                     _context.SaveChanges();
                     return RedirectToAction("Appointments");
                 }
-		    }
+                else
+                {
+                    var isTimeSlotAvailableAttribute = vm.GetType().GetProperty("StartTime").GetCustomAttributes(typeof(IsTimeSlotAvailableAttribute), true).FirstOrDefault() as IsTimeSlotAvailableAttribute;
+                    if (isTimeSlotAvailableAttribute != null)
+                    {
+                        ModelState.AddModelError("Appointment.StartTime", isTimeSlotAvailableAttribute.ErrorMessage);
+                    }
+                }
+             }
+            vm.Customers = _context.Customers.ToList();
             return View(vm);
         }
 

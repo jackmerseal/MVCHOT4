@@ -55,10 +55,10 @@ namespace MVCHOT4.Models
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var appointment = (Appointment?)validationContext.ObjectInstance;
-            if(appointment == null)
-            {
-                return new ValidationResult("Appointment is null");
-            }
+            //if(appointment == null)
+            //{
+            //    return new ValidationResult("Appointment is null");
+            //}
             var appointmentContext = (AppointmentContext)validationContext.GetService(typeof(AppointmentContext));
 
             var appointments = appointmentContext.Appointments

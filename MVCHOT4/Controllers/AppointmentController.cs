@@ -54,25 +54,15 @@ namespace MVCHOT4.Controllers
         [HttpPost]
         public IActionResult Add([FromForm] AppointmentViewModel vm)
         {
-                if (vm.Appointment.Id != null)
-                {
+            if (ModelState.IsValid && vm.Appointment.Id != null)
+            {
                     _context.Appointments.Add(vm.Appointment);
                     _context.SaveChanges();
                     return RedirectToAction("Appointments");
-                }
-                else
-                {
-                    var isTimeSlotAvailableAttribute = vm.GetType().GetProperty("StartTime").GetCustomAttributes(typeof(IsTimeSlotAvailableAttribute), true).FirstOrDefault() as IsTimeSlotAvailableAttribute;
-                    if (isTimeSlotAvailableAttribute != null)
-                    {
-                        ModelState.AddModelError("Appointment.StartTime", isTimeSlotAvailableAttribute.ErrorMessage);
-                        vm.Customers = _context.Customers.ToList();
-                        return View(vm);
-                    }
-                }
-                vm.Customers = _context.Customers.ToList();
-                return View(vm);
-        }
+            }
+			vm.Customers = _context.Customers.ToList();
+			return View(vm);
+		}
 
 		[HttpGet]
 		public IActionResult Cancel(int id)

@@ -54,14 +54,15 @@ namespace MVCHOT4.Controllers
         [HttpPost]
         public IActionResult Add([FromForm] AppointmentViewModel vm)
         {
+            if(vm.Appointment != null)
+            {
+                vm.Appointment = new Appointment();
+            }
             if (ModelState.IsValid)
             {
-                if (vm.Appointment.Id != 0)
-                {
-                    _context.Appointments.Add(vm.Appointment);
-                    _context.SaveChanges();
-                    return RedirectToAction("Appointments");
-                }
+                _context.Appointments.Add(vm.Appointment);
+                _context.SaveChanges();
+                return RedirectToAction("Appointments");
             }
             vm.Customers = _context.Customers.ToList();
             return View(vm);

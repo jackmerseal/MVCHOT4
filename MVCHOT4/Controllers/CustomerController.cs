@@ -70,7 +70,7 @@ namespace MVCHOT4.Controllers
 		}
 
         [HttpGet]
-        public IActionResult Cancel(int id)
+        public IActionResult Cancel(int id) 
         {
             if (id == 0)
             {
@@ -82,29 +82,29 @@ namespace MVCHOT4.Controllers
             }
         }
 
-		public class FutureDateAttribute : ValidationAttribute
-		{
-			protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-			{
-				if(value != null)
-				{
-					DateTime dateTime = (DateTime)value;
-					if (dateTime < DateTime.Now)
-					{
-						return new ValidationResult(ErrorMessage);
-					}
-				}
-				return ValidationResult.Success;
-			}
-		}
+		//public class FutureDateAttribute : ValidationAttribute
+		//{
+		//	protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+		//	{
+		//		if(value != null)
+		//		{
+		//			DateTime dateTime = (DateTime)value;
+		//			if (dateTime < DateTime.Now)
+		//			{
+		//				return new ValidationResult(ErrorMessage);
+		//			}
+		//		}
+		//		return ValidationResult.Success;
+		//	}
+		//}
 
-		public class IsTimeSlotAvailableAttribute : ValidationAttribute
-		{
-			protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-			{
-				return ValidationResult.Success;
-			}
-		}
+		//public class IsTimeSlotAvailableAttribute : ValidationAttribute
+		//{
+		//	protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+		//	{
+		//		return ValidationResult.Success;
+		//	}
+		//}
 
 	}
 }

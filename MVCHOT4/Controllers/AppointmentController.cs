@@ -52,7 +52,7 @@ namespace MVCHOT4.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add([FromForm] AppointmentViewModel vm)
+        public IActionResult Add([FutureDate, IsTimeSlotAvailable] AppointmentViewModel vm)
         {
             if(vm.Appointment != null)
             {

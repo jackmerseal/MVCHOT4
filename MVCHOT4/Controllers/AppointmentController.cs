@@ -55,17 +55,16 @@ namespace MVCHOT4.Controllers
         [HttpPost]
         public IActionResult Add([FutureDate, IsTimeSlotAvailable] AppointmentViewModel vm)
         {
-				if (ModelState.IsValid)
-				{
-					_context.Appointments.Add(vm.Appointment);
-                    _context.SaveChanges();
-				    return RedirectToAction("Appointments");
-				}
-                else
+            if (vm.Appointment.Id != null)
+            {
+                if (ModelState.IsValid)
                 {
-                    vm.Customers = _context.Customers.ToList();
-                    return View(vm);
+                    _context.Appointments.Add(vm.Appointment);
+                    _context.SaveChanges();
+                    return RedirectToAction("Appointments");
                 }
+		    }
+            return View(vm);
         }
 
 		[HttpGet]

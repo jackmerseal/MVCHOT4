@@ -33,9 +33,7 @@ namespace MVCHOT4.Models
                 {
                     yield return new ValidationResult(isTimeSlotAvailableAttribute.ErrorMessage);
                 }
-                
             }
-
         }
     }
 

@@ -52,10 +52,8 @@ namespace MVCHOT4.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add([FutureDate, IsTimeSlotAvailable] AppointmentViewModel vm)
+        public IActionResult Add([FromForm] AppointmentViewModel vm)
         {
-            if(ModelState.IsValid)
-            {
                 if (vm.Appointment.Id != null)
                 {
                     _context.Appointments.Add(vm.Appointment);
@@ -68,11 +66,12 @@ namespace MVCHOT4.Controllers
                     if (isTimeSlotAvailableAttribute != null)
                     {
                         ModelState.AddModelError("Appointment.StartTime", isTimeSlotAvailableAttribute.ErrorMessage);
+                        vm.Customers = _context.Customers.ToList();
+                        return View(vm);
                     }
                 }
-             }
-            vm.Customers = _context.Customers.ToList();
-            return View(vm);
+                vm.Customers = _context.Customers.ToList();
+                return View(vm);
         }
 
 		[HttpGet]

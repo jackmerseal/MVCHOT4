@@ -20,19 +20,23 @@ namespace MVCHOT4.Models
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
+            var appointment = (Appointment)validationContext.ObjectInstance;
             var appointmentContext = (AppointmentContext)validationContext.GetService(typeof(AppointmentContext));
             var appointments = appointmentContext.Appointments.Where(a => a.StartTime ==  StartTime).ToList();
 
+            appointments = appointments.Where(a => a.Id != appointment.Id).ToList();
+
             if(appointments.Any())
             {
-                var isTimeSlotAvailableAttribute = validationContext.ObjectType
-                    .GetCustomAttributes(typeof(IsTimeSlotAvailableAttribute), true)
-                    .FirstOrDefault() as IsTimeSlotAvailableAttribute;
+                yield return new ValidationResult(/*isTimeSlotAvailableAttribute.*/ErrorMessage);
+                //var isTimeSlotAvailableAttribute = validationContext.ObjectType
+                //    .GetCustomAttributes(typeof(IsTimeSlotAvailableAttribute), true)
+                //    .FirstOrDefault() as IsTimeSlotAvailableAttribute;
 
-                if(isTimeSlotAvailableAttribute != null)
-                {
-                    yield return new ValidationResult(isTimeSlotAvailableAttribute.ErrorMessage);
-                }
+                //if(isTimeSlotAvailableAttribute != null)
+                //{
+                    
+                //}
             }
         }
     }

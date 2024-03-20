@@ -58,7 +58,7 @@ namespace MVCHOT4.Models
             var appointmentContext = (AppointmentContext)validationContext.GetService(typeof(AppointmentContext));
 
             var appointments = appointmentContext.Appointments
-                .Where(a => a.StartTime == appointment.StartTime && a.Id != appointment.Id)
+                .Where(a => a.StartTime == appointment.StartTime && a.Id != appointment.Id && a.CustomerId != 0)
                 .ToList();
 
             if(appointments.Any())

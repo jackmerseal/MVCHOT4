@@ -56,15 +56,15 @@ namespace MVCHOT4.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Appointments.Add(vm.Appointment);
-                _context.SaveChanges();
-                return RedirectToAction("Appointments");
+                if (vm.Appointment.Id != 0)
+                {
+                    _context.Appointments.Add(vm.Appointment);
+                    _context.SaveChanges();
+                    return RedirectToAction("Appointments");
+                }
             }
-            else
-            {
-                vm.Customers = _context.Customers.ToList();
-			    return View(vm);
-            }
+            vm.Customers = _context.Customers.ToList();
+            return View(vm);
 		}
 
 		[HttpGet]

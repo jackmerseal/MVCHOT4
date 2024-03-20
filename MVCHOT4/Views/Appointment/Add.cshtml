@@ -16,7 +16,7 @@
 		<div class="m-3">
 			<label asp-for="Appointment.CustomerId" class="form-label">Customer</label>
 			<select asp-for="Appointment.CustomerId" class="form-select">
-				<option value="0">-- Select Customer</option>
+				<option value="0">-- Select Customer --</option>
 				@foreach (var customer in Model.Customers)
 				{
 					<option value="@customer.CustomerId">@customer.Username</option>

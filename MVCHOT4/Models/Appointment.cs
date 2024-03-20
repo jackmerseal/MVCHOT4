@@ -59,7 +59,7 @@ namespace MVCHOT4.Models
             //{
             //    return new ValidationResult("Appointment is null");
             //}
-            var appointmentContext = (AppointmentContext)validationContext.GetService(typeof(AppointmentContext));
+            var appointmentContext = (AppointmentContext)validationContext.GetService(typeof(AppointmentContext)).;
 
             var appointments = appointmentContext.Appointments
                 .Where(a => a.StartTime == appointment.StartTime)

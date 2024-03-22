@@ -16,29 +16,26 @@ namespace MVCHOT4.Models
         [Required(ErrorMessage = "Customer is required")]
         public int CustomerId { get; set; }
         [ValidateNever]
-        public Customer? Customer { get; set; }
+        public Customer Customer { get; set; }
 
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        //{
-        //    var appointment = (Appointment)validationContext.ObjectInstance;
-        //    var appointmentContext = (AppointmentContext)validationContext.GetService(typeof(AppointmentContext));
-        //    var appointments = appointmentContext.Appointments.Where(a => a.StartTime == StartTime).ToList();
+		public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+		{
+			var appointment = (Appointment)validationContext.ObjectInstance;
+			var appointmentContext = (AppointmentContext)validationContext.GetService(typeof(AppointmentContext));
 
-        //    appointments = appointments.Where(a => a.Id != appointment.Id).ToList();
+			// Find appointments with the same StartTime but different CustomerId
+			var conflictingAppointments = appointmentContext.Appointments
+				.Where(a => a.StartTime == appointment.StartTime && a.CustomerId != appointment.CustomerId && a.Id != appointment.Id)
+				.ToList();
 
-        //    if(appointments.Any())
-        //    {
-        //        yield return new ValidationResult();
-        //        var isTimeSlotAvailableAttribute = validationContext.ObjectType
-        //            .GetCustomAttributes(typeof(IsTimeSlotAvailableAttribute), true)
-        //            .FirstOrDefault() as IsTimeSlotAvailableAttribute;
+			// Check if there are any conflicting appointments
+			if (conflictingAppointments.Any())
+			{
+				yield return new ValidationResult("Conflicting appointments found");
+			}
+		}
 
-        //        if (isTimeSlotAvailableAttribute != null)
-        //        {
 
-        //        }
-        //    }
-        //}
-    }
+	}
 }
  

@@ -51,21 +51,28 @@ namespace MVCHOT4.Controllers
             return View(vm);
         }
 
-        [HttpPost]
-        public IActionResult Add(AppointmentViewModel vm)
-        {
-            if(vm.Appointment != null)
-            {
-                vm.Appointment = new Appointment();
-            }
-            if (ModelState.IsValid)
-            {
-                _context.Appointments.Add(vm.Appointment);
-                _context.SaveChanges();
-                return RedirectToAction("Appointments");
-            }
-            vm.Customers = _context.Customers.ToList();
-            return View(vm);
+		[HttpPost]
+		public IActionResult Add(AppointmentViewModel vm)
+		{
+			if (ModelState.IsValid)
+			{
+				// Create a new Appointment object if it's not provided in the view model
+				if (vm.Appointment == null)
+				{
+					vm.Appointment = new Appointment();
+				}
+
+				// Add the appointment to the context and save changes
+				_context.Appointments.Add(vm.Appointment);
+				_context.SaveChanges();
+
+				// Redirect to the action to display appointments
+				return RedirectToAction("Appointments");
+			}
+
+			// If ModelState is not valid, reload the view with necessary data
+			vm.Customers = _context.Customers.ToList();
+			return View(vm);
 		}
 
 		[HttpGet]

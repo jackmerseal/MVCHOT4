@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace MVCHOT4.Models
 {
-    public class Appointment : IValidatableObject
+    public class Appointment
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Start date is required")]
@@ -18,72 +18,27 @@ namespace MVCHOT4.Models
         [ValidateNever]
         public Customer? Customer { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            var appointment = (Appointment)validationContext.ObjectInstance;
-            var appointmentContext = (AppointmentContext)validationContext.GetService(typeof(AppointmentContext));
-            var appointments = appointmentContext.Appointments.Where(a => a.StartTime ==  StartTime).ToList();
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
+        //    var appointment = (Appointment)validationContext.ObjectInstance;
+        //    var appointmentContext = (AppointmentContext)validationContext.GetService(typeof(AppointmentContext));
+        //    var appointments = appointmentContext.Appointments.Where(a => a.StartTime == StartTime).ToList();
 
-            appointments = appointments.Where(a => a.Id != appointment.Id).ToList();
+        //    appointments = appointments.Where(a => a.Id != appointment.Id).ToList();
 
-            if(appointments.Any())
-            {
-                yield return new ValidationResult(/*isTimeSlotAvailableAttribute.*/ErrorMessage);
-                //var isTimeSlotAvailableAttribute = validationContext.ObjectType
-                //    .GetCustomAttributes(typeof(IsTimeSlotAvailableAttribute), true)
-                //    .FirstOrDefault() as IsTimeSlotAvailableAttribute;
+        //    if(appointments.Any())
+        //    {
+        //        yield return new ValidationResult();
+        //        var isTimeSlotAvailableAttribute = validationContext.ObjectType
+        //            .GetCustomAttributes(typeof(IsTimeSlotAvailableAttribute), true)
+        //            .FirstOrDefault() as IsTimeSlotAvailableAttribute;
 
-                //if(isTimeSlotAvailableAttribute != null)
-                //{
-                    
-                //}
-            }
-        }
+        //        if (isTimeSlotAvailableAttribute != null)
+        //        {
+
+        //        }
+        //    }
+        //}
     }
-
-    public class FutureDateAttribute : ValidationAttribute
-    {
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            DateTime dateTime = (DateTime)value;
-            if(dateTime < DateTime.Now)
-            {
-                return new ValidationResult(ErrorMessage);
-            }
-            return ValidationResult.Success;
-        }
-    }
-
-    public class IsTimeSlotAvailableAttribute : ValidationAttribute 
-    {
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            var appointment = (Appointment)validationContext.ObjectInstance;
-            if (appointment == null)
-            {
-                return new ValidationResult("Appointment is null");
-            }
-            var appointmentContext = (AppointmentContext)validationContext.GetService(typeof(AppointmentContext));
-
-            var appointments = appointmentContext.Appointments
-                .Where(a => a.StartTime == appointment.StartTime)
-                .ToList();
-
-            appointments = appointments.Where(a => a.Id != appointment.Id).ToList();
-
-			DateTime startTime = (DateTime)value;
-
-			if (appointments.Any())
-            {
-                if (startTime == appointment.StartTime)
-                {
-                    return new ValidationResult(ErrorMessage);
-                }
-            }
-
-            return ValidationResult.Success;
-        }
-    }
-
 }
  
